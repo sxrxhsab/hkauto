@@ -5,37 +5,37 @@
 $supabase_url = 'https://dgydrebzjuppsavulahe.supabase.co';
 $supabase_key = 'sb_publishable_rxz0S8mpSq4eYECppJ57iw_QMdVZ5Kp';
 
-// Fonction pour appeler l'API Supabase
+// Fonction pour appeler l'API Supabase (SANS CURL)
 function supabaseQuery($table, $method = 'GET', $data = null) {
     global $supabase_url, $supabase_key;
     
     $url = $supabase_url . '/rest/v1/' . $table . '?select=*';
-    $headers = [
-        'apikey: ' . $supabase_key,
-        'Authorization: Bearer ' . $supabase_key,
-        'Content-Type: application/json',
-        'Prefer: return=representation'
+    
+    $options = [
+        'http' => [
+            'header' => [
+                'apikey: ' . $supabase_key,
+                'Authorization: Bearer ' . $supabase_key,
+                'Content-Type: application/json',
+                'Prefer: return=representation'
+            ],
+            'method' => $method,
+            'timeout' => 10
+        ]
     ];
     
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    
-    if ($method === 'POST') {
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    if ($method === 'POST' && $data !== null) {
+        $options['http']['content'] = json_encode($data);
     }
     
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    $context = stream_context_create($options);
+    $response = @file_get_contents($url, false, $context);
     
-    if ($httpCode === 200 || $httpCode === 201) {
-        return json_decode($response, true);
+    if ($response === false) {
+        return false;
     }
-    return false;
+    
+    return json_decode($response, true);
 }
 
 // Récupérer les avis
@@ -70,13 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         $result = supabaseQuery('reviews', 'POST', $data);
         if ($result !== false) {
             $success_review = "✅ Merci pour votre avis !";
-            // Recharger les avis
             $reviews = supabaseQuery('reviews', 'GET');
-            if (empty($reviews) || $reviews === false) {
-                $reviews = [
-                    ['username' => $username, 'rating' => $rating, 'comment' => $comment, 'is_verified' => true, 'created_at' => date('Y-m-d H:i:s')]
-                ];
-            }
         } else {
             $error_review = "❌ Une erreur est survenue. Veuillez réessayer.";
         }
