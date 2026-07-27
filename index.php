@@ -1174,11 +1174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <span class="brand-name">Audi</span>
             </div>
             
-            <!-- Volkswagen -->
-            <div class="brand-item-svg">
-                <img src="assets/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy">
-                <span class="brand-name">Volkswagen</span>
-            </div>
+     
             
             <!-- Peugeot -->
             <div class="brand-item-svg hidden-brand">
@@ -1520,8 +1516,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <div class="glass rounded-2xl p-6 text-center">
                     <i class="fas fa-phone text-4xl text-[#D90429] mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">Appelez-nous</h3>
-                    <a href="tel:+33755078301" class="text-2xl font-bold text-[#D90429] hover:underline block">+33 7 55 07 83 01</a>
-                    <a href="tel:+33758640784" class="text-white/30 hover:text-[#D90429] transition-colors text-sm block mt-1">+33 7 58 64 07 84</a>
+                    <a href="tel:+33758640784" class="text-2xl font-bold text-[#D90429] hover:underline block">+33 7 55 07 83 01</a>
+                    <a href="tel:+33755078301" class="text-white/30 hover:text-[#D90429] transition-colors text-sm block mt-1">+33 7 58 64 07 84</a>
                     <p class="text-white/20 text-sm mt-2">Lun - Sam : 8h00 - 18h00</p>
                 </div>
             </div>
@@ -1652,6 +1648,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                     <li><i class="fas fa-phone mr-2 text-[#D90429]"></i> <a href="tel:+33755078301" class="hover:text-white transition-colors">+33 7 55 07 83 01</a></li>
                     <li><i class="fab fa-whatsapp mr-2 text-[#25D366]"></i> <a href="https://wa.me/33758640784" target="_blank" class="hover:text-white transition-colors">+33 7 58 64 07 84</a></li>
                     <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Malik.salhi77@gmail.com" class="hover:text-white transition-colors">Malik.salhi77@gmail.com</a></li>
+                    <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Autohkcontact1@gmail.com" class="hover:text-white transition-colors">Autohkcontact1@gmail.com</a></li>
                 </ul>
             </div>
             <div>
