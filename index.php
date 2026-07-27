@@ -41,7 +41,7 @@ function supabaseQuery($table, $method = 'GET', $data = null) {
 // Récupérer les avis
 $reviews = supabaseQuery('reviews', 'GET');
 
-// Avis par défaut si erreur
+// Avis par défaut si erreur ou pas d'avis
 if (empty($reviews) || $reviews === false) {
     $reviews = [
         ['username' => 'Jean D.', 'rating' => 5, 'comment' => 'Service impeccable, équipe professionnelle et à l\'écoute. Je recommande vivement !', 'is_verified' => true, 'created_at' => date('Y-m-d H:i:s')],
@@ -70,7 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         $result = supabaseQuery('reviews', 'POST', $data);
         if ($result !== false) {
             $success_review = "✅ Merci pour votre avis !";
+            // Recharger les avis
             $reviews = supabaseQuery('reviews', 'GET');
+            if (empty($reviews) || $reviews === false) {
+                $reviews = [
+                    ['username' => $username, 'rating' => $rating, 'comment' => $comment, 'is_verified' => true, 'created_at' => date('Y-m-d H:i:s')]
+                ];
+            }
         } else {
             $error_review = "❌ Une erreur est survenue. Veuillez réessayer.";
         }
@@ -82,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- ... le reste de votre HTML ... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>HK AUTO - Garage Automobile de Prestige</title>
