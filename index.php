@@ -82,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- ... le reste de votre HTML ... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>HK AUTO - Garage Automobile de Prestige</title>
@@ -532,9 +531,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             width: 50px;
             height: 50px;
             object-fit: contain;
-            filter: grayscale(100%) brightness(0) invert(0.4);
+            filter: brightness(0) invert(0.3);
             transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
-            opacity: 0.5;
+            opacity: 0.6;
         }
         .brand-item-svg .brand-name {
             font-size: 0.65rem;
@@ -551,7 +550,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             box-shadow: 0 12px 40px rgba(217,4,41,0.06);
         }
         .brand-item-svg:hover img {
-            filter: grayscale(0%) brightness(1) invert(0);
+            filter: brightness(1) invert(0);
             opacity: 1;
             transform: scale(1.08);
         }
@@ -848,7 +847,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <body>
 
 <!-- ===== WHATSAPP FLOATING ===== -->
-<a href="https://wa.me/33755078301?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." 
+<a href="https://wa.me/33758640784?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." 
    class="whatsapp-float" target="_blank" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
@@ -869,7 +868,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         <a href="https://www.facebook.com/people/HK-Auto/61592171522340/" target="_blank" class="text-white/30 hover:text-[#D90429] text-2xl transition-colors"><i class="fab fa-facebook-f"></i></a>
         <a href="https://www.instagram.com/autohkcontact" target="_blank" class="text-white/30 hover:text-[#D90429] text-2xl transition-colors"><i class="fab fa-instagram"></i></a>
         <a href="https://www.tiktok.com/@hkautoservices" target="_blank" class="text-white/30 hover:text-[#D90429] text-2xl transition-colors"><i class="fab fa-tiktok"></i></a>
-        <a href="https://wa.me/33755078301" target="_blank" class="text-white/30 hover:text-[#25D366] text-2xl transition-colors"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/33758640784" target="_blank" class="text-white/30 hover:text-[#25D366] text-2xl transition-colors"><i class="fab fa-whatsapp"></i></a>
     </div>
 </div>
 
@@ -927,7 +926,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             <a href="#rdv" class="btn-primary">
                 <i class="fas fa-calendar-check"></i> Prendre rendez-vous
             </a>
-            <a href="https://wa.me/33755078301?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." 
+            <a href="https://wa.me/33758640784?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." 
                class="btn-whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
@@ -1205,15 +1204,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <span class="brand-name">Toyota</span>
             </div>
             
-            <!-- Ford -->
-            <div class="brand-item-svg hidden-brand">
-                <img src="assets/img/brands/ford.svg" alt="Ford" loading="lazy">
-                <span class="brand-name">Ford</span>
-            </div>
+          
             
             <!-- Nissan -->
             <div class="brand-item-svg hidden-brand">
-                <img src="assets/img/brands/nissan.svg" alt="Nissan" loading="lazy">
+                <img src="assets/img/brands/Nissan.svg" alt="Nissan" loading="lazy">
                 <span class="brand-name">Nissan</span>
             </div>
             
@@ -1249,7 +1244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             
             <!-- Tesla -->
             <div class="brand-item-svg hidden-brand">
-                <img src="assets/img/brands/tesla.svg" alt="Tesla" loading="lazy">
+                <img src="assets/img/brands/Tesla.svg" alt="Tesla" loading="lazy">
                 <span class="brand-name">Tesla</span>
             </div>
             
@@ -1442,7 +1437,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
     </div>
 </section>
 
-<!-- ===== RENDEZ-VOUS (EMAIL OPTIONNEL) ===== -->
+<!-- ===== RENDEZ-VOUS ===== -->
 <section class="section-padding bg-[#0a0a0a]" id="rdv">
     <div class="container mx-auto max-w-6xl">
         <div data-aos="fade-up">
@@ -1468,28 +1463,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                             <input type="tel" id="rdvPhone" required class="form-input" placeholder="06 12 34 56 78">
                         </div>
                         <div>
-                            <label class="form-label">Service souhaité</label>
-                            <select id="rdvService" class="form-input">
-                                <option value="">Sélectionnez un service</option>
+                            <label class="form-label">Marque du véhicule <span class="required">*</span></label>
+                            <input type="text" id="rdvBrand" required class="form-input" placeholder="BMW, Mercedes, Audi...">
+                        </div>
+                        <div>
+                            <label class="form-label">Modèle du véhicule <span class="required">*</span></label>
+                            <input type="text" id="rdvModel" required class="form-input" placeholder="Série 3, Classe C...">
+                        </div>
+                        <div>
+                            <label class="form-label">Immatriculation <span class="required">*</span></label>
+                            <input type="text" id="rdvPlate" required class="form-input" placeholder="AB-123-CD">
+                        </div>
+                        <div>
+                            <label class="form-label">Motif de la visite <span class="required">*</span></label>
+                            <select id="rdvReason" required class="form-input">
+                                <option value="">Sélectionnez un motif</option>
                                 <option value="Entretien & Diagnostic">Entretien & Diagnostic</option>
                                 <option value="Pneus">Pneus</option>
                                 <option value="Révision & Vidange">Révision & Vidange</option>
                                 <option value="Freinage">Freinage</option>
                                 <option value="Carrosserie">Carrosserie</option>
+                                <option value="Vidange moteur">Vidange moteur</option>
+                                <option value="Climatisation">Climatisation</option>
+                                <option value="Batterie">Batterie</option>
+                                <option value="Vitres teintées">Vitres teintées</option>
+                                <option value="Diagnostic électronique">Diagnostic électronique</option>
+                                <option value="Autre">Autre (précisez dans le message)</option>
                             </select>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="form-label">Date <span class="required">*</span></label>
-                                <input type="date" id="rdvDate" required class="form-input" min="<?= date('Y-m-d') ?>">
-                            </div>
-                            <div>
-                                <label class="form-label">Heure <span class="required">*</span></label>
-                                <input type="time" id="rdvTime" required class="form-input">
-                            </div>
+                        <div>
+                            <label class="form-label">Date souhaitée <span class="required">*</span></label>
+                            <input type="date" id="rdvDate" required class="form-input" min="<?= date('Y-m-d') ?>">
                         </div>
                         <div>
-                            <label class="form-label">Message</label>
+                            <label class="form-label">Informations supplémentaires (optionnel)</label>
                             <textarea id="rdvMessage" rows="2" class="form-input" placeholder="Informations complémentaires..."></textarea>
                         </div>
                         <button type="button" onclick="sendToWhatsApp()" class="btn-primary w-full justify-center" style="padding: 14px 28px; min-height: 52px; font-size: 0.95rem;">
@@ -1504,7 +1511,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                     <i class="fab fa-whatsapp text-5xl text-[#25D366] mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">Rendez-vous par WhatsApp</h3>
                     <p class="text-white/30 text-sm">Réponse rapide et simple</p>
-                    <a href="https://wa.me/33755078301?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." 
+                    <a href="https://wa.me/33758640784?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." 
                        class="btn-whatsapp w-full mt-4 justify-center" target="_blank" style="padding: 14px 28px; min-height: 52px; font-size: 0.95rem;">
                         <i class="fab fa-whatsapp"></i> Nous contacter sur WhatsApp
                     </a>
@@ -1554,7 +1561,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                         </div>
                         <div>
                             <h4 class="font-bold text-white">WhatsApp</h4>
-                            <a href="https://wa.me/33755078301" target="_blank" class="text-[#25D366] hover:underline">+33 7 55 07 83 01</a>
+                            <a href="https://wa.me/33758640784" target="_blank" class="text-[#25D366] hover:underline">+33 7 58 64 07 84</a>
                         </div>
                     </div>
                     
@@ -1608,7 +1615,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                                 <a href="https://www.tiktok.com/@hkautoservices" target="_blank" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#D90429] transition-colors">
                                     <i class="fab fa-tiktok text-white"></i>
                                 </a>
-                                <a href="https://wa.me/33755078301" target="_blank" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#25D366] transition-colors">
+                                <a href="https://wa.me/33758640784" target="_blank" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#25D366] transition-colors">
                                     <i class="fab fa-whatsapp text-white"></i>
                                 </a>
                             </div>
@@ -1643,7 +1650,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <ul class="space-y-2 text-sm text-white/40">
                     <li><i class="fas fa-map-marker-alt mr-2 text-[#D90429]"></i> 18 Rue Carnot, 95870 BEZONS</li>
                     <li><i class="fas fa-phone mr-2 text-[#D90429]"></i> <a href="tel:+33755078301" class="hover:text-white transition-colors">+33 7 55 07 83 01</a></li>
-                    <li><i class="fab fa-whatsapp mr-2 text-[#25D366]"></i> <a href="https://wa.me/33755078301" target="_blank" class="hover:text-white transition-colors">+33 7 55 07 83 01</a></li>
+                    <li><i class="fab fa-whatsapp mr-2 text-[#25D366]"></i> <a href="https://wa.me/33758640784" target="_blank" class="hover:text-white transition-colors">+33 7 58 64 07 84</a></li>
                     <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Malik.salhi77@gmail.com" class="hover:text-white transition-colors">Malik.salhi77@gmail.com</a></li>
                 </ul>
             </div>
@@ -1659,7 +1666,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                     <a href="https://www.tiktok.com/@hkautoservices" target="_blank" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#D90429] transition-all duration-300 hover:scale-110">
                         <i class="fab fa-tiktok text-white text-lg"></i>
                     </a>
-                    <a href="https://wa.me/33755078301" target="_blank" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#25D366] transition-all duration-300 hover:scale-110">
+                    <a href="https://wa.me/33758640784" target="_blank" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#25D366] transition-all duration-300 hover:scale-110">
                         <i class="fab fa-whatsapp text-white text-lg"></i>
                     </a>
                 </div>
@@ -1679,7 +1686,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         <i class="fas fa-phone"></i>
         <span>Appeler</span>
     </a>
-    <a href="https://wa.me/33755078301?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." target="_blank" class="bar-item">
+    <a href="https://wa.me/33758640784?text=Bonjour%20HK%20AUTO,%20je%20souhaite%20prendre%20rendez-vous%20pour%20mon%20véhicule." target="_blank" class="bar-item">
         <i class="fab fa-whatsapp"></i>
         <span>WhatsApp</span>
     </a>
@@ -1833,14 +1840,16 @@ function toggleBrands() {
     }
 }
 
-// ===== FORMULAIRE VERS WHATSAPP (EMAIL OPTIONNEL) =====
+// ===== FORMULAIRE VERS WHATSAPP =====
 function sendToWhatsApp() {
     const name = document.getElementById('rdvName').value.trim();
     const email = document.getElementById('rdvEmail').value.trim();
     const phone = document.getElementById('rdvPhone').value.trim();
-    const service = document.getElementById('rdvService').value || 'Non spécifié';
+    const brand = document.getElementById('rdvBrand').value.trim();
+    const model = document.getElementById('rdvModel').value.trim();
+    const plate = document.getElementById('rdvPlate').value.trim();
+    const reason = document.getElementById('rdvReason').value;
     const date = document.getElementById('rdvDate').value;
-    const time = document.getElementById('rdvTime').value;
     const message = document.getElementById('rdvMessage').value.trim();
     
     // Validation : email optionnel
@@ -1849,7 +1858,7 @@ function sendToWhatsApp() {
         return;
     }
     
-    if (!name || !phone || !date || !time) {
+    if (!name || !phone || !brand || !model || !plate || !date || !reason) {
         alert('Veuillez remplir tous les champs obligatoires (*)');
         return;
     }
@@ -1860,16 +1869,18 @@ function sendToWhatsApp() {
         text += '📧 *Email :* ' + email + '%0A';
     }
     text += '📱 *Téléphone :* ' + phone + '%0A';
-    text += '🔧 *Service :* ' + service + '%0A';
-    text += '📅 *Date :* ' + date + '%0A';
-    text += '⏰ *Heure :* ' + time + '%0A';
+    text += '🚗 *Marque :* ' + brand + '%0A';
+    text += '🚙 *Modèle :* ' + model + '%0A';
+    text += '📋 *Immatriculation :* ' + plate + '%0A';
+    text += '🔧 *Motif :* ' + reason + '%0A';
+    text += '📅 *Date souhaitée :* ' + date + '%0A';
     if (message) {
-        text += '📝 *Message :* ' + message + '%0A';
+        text += '📝 *Informations complémentaires :* ' + message + '%0A';
     }
     text += '%0A---%0A';
     text += '🔴 *HK AUTO* - Votre garage de confiance';
     
-    const url = 'https://wa.me/33755078301?text=' + text;
+    const url = 'https://wa.me/33758640784?text=' + text;
     window.open(url, '_blank');
 }
 
