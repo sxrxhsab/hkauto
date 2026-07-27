@@ -1,0 +1,4 @@
+cd C:\xampp\htdocs\hkauto
+echo .vscode/ > .gitignore
+echo .idea/ >> .gitignore
+echo *.log >> .gitignore
