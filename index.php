@@ -1,19 +1,14 @@
 <?php
 // ================================================
-// CONFIGURATION POSTGRESQL (RENDER)
+// CONFIGURATION POSTGRESQL (RENDER - URL EXTERNE)
 // ================================================
-$host = 'dpg-d9jkrl6rnols738vfuv0-a';
-$port = '5432';
-$dbname = 'hkauto_db';
-$user = 'hkauto_db_user';
-$pass = 'GuNbocFn9NDyu4T2S8gUQC1T192zL3mv';
+$database_url = 'postgresql://hkauto_db_user:GuNbocFn9NDyu4T2S8gUQC1T192zL3mv@dpg-d9jkrl6rnols738vfuv0-a.oregon-postgres.render.com/hkauto_db';
 
 $pdo = null;
 $reviews = [];
 
 try {
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
-    $pdo = new PDO($dsn, $user, $pass, [
+    $pdo = new PDO($database_url, null, null, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false
