@@ -1,7 +1,10 @@
 FROM php:8.2-apache
 
-# Activer les wrappers HTTP (déjà activés par défaut)
-# Pas besoin d'installer curl
+# Installer curl et ses dépendances
+RUN apt-get update && apt-get install -y \
+    curl \
+    libcurl4-openssl-dev \
+    && docker-php-ext-install curl
 
 # Activer mod_rewrite
 RUN a2enmod rewrite
