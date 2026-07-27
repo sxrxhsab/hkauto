@@ -5,37 +5,36 @@
 $supabase_url = 'https://dgydrebzjuppsavulahe.supabase.co';
 $supabase_key = 'sb_publishable_rxz0S8mpSq4eYECppJ57iw_QMdVZ5Kp';
 
-// Fonction pour appeler l'API Supabase (SANS CURL)
+// Fonction pour appeler l'API Supabase (avec CURL)
 function supabaseQuery($table, $method = 'GET', $data = null) {
     global $supabase_url, $supabase_key;
     
     $url = $supabase_url . '/rest/v1/' . $table . '?select=*';
     
-    $options = [
-        'http' => [
-            'header' => [
-                'apikey: ' . $supabase_key,
-                'Authorization: Bearer ' . $supabase_key,
-                'Content-Type: application/json',
-                'Prefer: return=representation'
-            ],
-            'method' => $method,
-            'timeout' => 10
-        ]
-    ];
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'apikey: ' . $supabase_key,
+        'Authorization: Bearer ' . $supabase_key,
+        'Content-Type: application/json',
+        'Prefer: return=representation'
+    ]);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     
     if ($method === 'POST' && $data !== null) {
-        $options['http']['content'] = json_encode($data);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     }
     
-    $context = stream_context_create($options);
-    $response = @file_get_contents($url, false, $context);
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
     
-    if ($response === false) {
-        return false;
+    if ($httpCode === 200 || $httpCode === 201) {
+        return json_decode($response, true);
     }
-    
-    return json_decode($response, true);
+    return false;
 }
 
 // Récupérer les avis
@@ -70,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         $result = supabaseQuery('reviews', 'POST', $data);
         if ($result !== false) {
             $success_review = "✅ Merci pour votre avis !";
+            // Recharger les avis
             $reviews = supabaseQuery('reviews', 'GET');
         } else {
             $error_review = "❌ Une erreur est survenue. Veuillez réessayer.";
@@ -1156,12 +1156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         </div>
         
         <div class="brands-grid mt-12" id="brandsGrid" data-aos="fade-up" data-aos-delay="100">
-            <!-- BMW -->
-            <div class="brand-item-svg">
-                <img src="assets/img/brands/bmw.svg" alt="BMW" loading="lazy">
-                <span class="brand-name">BMW</span>
-            </div>
-            
+         
             <!-- Mercedes-Benz -->
             <div class="brand-item-svg">
                 <img src="assets/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy">
