@@ -1,46 +1,48 @@
 <?php
 // ================================================
-// CONFIGURATION POSTGRESQL (RENDER - URL EXTERNE)
+// CONFIGURATION SUPABASE (hkauto-avis)
 // ================================================
-$database_url = 'postgresql://hkauto_db_user:GuNbocFn9NDyu4T2S8gUQC1T192zL3mv@dpg-d9jkrl6rnols738vfuv0-a.oregon-postgres.render.com/hkauto_db';
+$supabase_url = 'https://dgydrebzjuppsavulahe.supabase.co';
+$supabase_key = 'sb_publishable_rxz0S8mpSq4eYECppJ57iw_QMdVZ5Kp';
 
-$pdo = null;
-$reviews = [];
-
-try {
-    $pdo = new PDO($database_url, null, null, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false
-    ]);
+// Fonction pour appeler l'API Supabase
+function supabaseQuery($table, $method = 'GET', $data = null) {
+    global $supabase_url, $supabase_key;
     
-    // Créer la table reviews
-    $pdo->exec("CREATE TABLE IF NOT EXISTS reviews (
-        id SERIAL PRIMARY KEY,
-        username VARCHAR(100) NOT NULL,
-        rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
-        comment TEXT NOT NULL,
-        is_verified BOOLEAN DEFAULT TRUE,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )");
+    $url = $supabase_url . '/rest/v1/' . $table . '?select=*';
+    $headers = [
+        'apikey: ' . $supabase_key,
+        'Authorization: Bearer ' . $supabase_key,
+        'Content-Type: application/json',
+        'Prefer: return=representation'
+    ];
     
-    // Récupérer les avis
-    $stmt = $pdo->query("SELECT * FROM reviews ORDER BY created_at DESC LIMIT 10");
-    $reviews = $stmt->fetchAll();
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     
-    // Si pas d'avis, ajouter des avis par défaut
-    if (empty($reviews)) {
-        $pdo->exec("INSERT INTO reviews (username, rating, comment, is_verified) VALUES 
-            ('Jean D.', 5, 'Service impeccable, équipe professionnelle et à l''écoute. Je recommande vivement !', true),
-            ('Marie M.', 5, 'Un garage de confiance avec des prix compétitifs. Ma voiture est entre de bonnes mains.', true),
-            ('Pierre D.', 5, 'Très satisfait du service. Intervention rapide et qualité au rendez-vous.', true)
-        ");
-        $stmt = $pdo->query("SELECT * FROM reviews ORDER BY created_at DESC LIMIT 10");
-        $reviews = $stmt->fetchAll();
+    if ($method === 'POST') {
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     }
     
-} catch(PDOException $e) {
-    // Avis par défaut si erreur
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    
+    if ($httpCode === 200 || $httpCode === 201) {
+        return json_decode($response, true);
+    }
+    return false;
+}
+
+// Récupérer les avis
+$reviews = supabaseQuery('reviews', 'GET');
+
+// Avis par défaut si erreur
+if (empty($reviews) || $reviews === false) {
     $reviews = [
         ['username' => 'Jean D.', 'rating' => 5, 'comment' => 'Service impeccable, équipe professionnelle et à l\'écoute. Je recommande vivement !', 'is_verified' => true, 'created_at' => date('Y-m-d H:i:s')],
         ['username' => 'Marie M.', 'rating' => 5, 'comment' => 'Un garage de confiance avec des prix compétitifs. Ma voiture est entre de bonnes mains.', 'is_verified' => true, 'created_at' => date('Y-m-d H:i:s')],
@@ -53,28 +55,27 @@ $success_review = '';
 $error_review = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
-    if ($pdo !== null) {
-        $username = htmlspecialchars(trim($_POST['username'] ?? ''));
-        $rating = (int)($_POST['rating'] ?? 0);
-        $comment = htmlspecialchars(trim($_POST['comment'] ?? ''));
+    $username = htmlspecialchars(trim($_POST['username'] ?? ''));
+    $rating = (int)($_POST['rating'] ?? 0);
+    $comment = htmlspecialchars(trim($_POST['comment'] ?? ''));
+    
+    if (!empty($username) && $rating >= 1 && $rating <= 5 && !empty($comment)) {
+        $data = [
+            'username' => $username,
+            'rating' => $rating,
+            'comment' => $comment,
+            'is_verified' => true
+        ];
         
-        if (!empty($username) && $rating >= 1 && $rating <= 5 && !empty($comment)) {
-            try {
-                $stmt = $pdo->prepare("INSERT INTO reviews (username, rating, comment, is_verified) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$username, $rating, $comment, true]);
-                $success_review = "✅ Merci pour votre avis !";
-                
-                // Recharger les avis
-                $stmt = $pdo->query("SELECT * FROM reviews ORDER BY created_at DESC LIMIT 10");
-                $reviews = $stmt->fetchAll();
-            } catch(PDOException $e) {
-                $error_review = "❌ Une erreur est survenue. Veuillez réessayer.";
-            }
+        $result = supabaseQuery('reviews', 'POST', $data);
+        if ($result !== false) {
+            $success_review = "✅ Merci pour votre avis !";
+            $reviews = supabaseQuery('reviews', 'GET');
         } else {
-            $error_review = "❌ Veuillez remplir tous les champs.";
+            $error_review = "❌ Une erreur est survenue. Veuillez réessayer.";
         }
     } else {
-        $error_review = "❌ Base de données non disponible.";
+        $error_review = "❌ Veuillez remplir tous les champs.";
     }
 }
 ?>
