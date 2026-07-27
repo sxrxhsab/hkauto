@@ -1545,9 +1545,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                         </div>
                         <div>
                             <h4 class="font-bold text-white">Téléphone principal</h4>
-                            <a href="tel:+33755078301" class="text-[#D90429] hover:underline text-lg font-semibold">+33 7 55 07 83 01</a>
+                            <a href="tel:+33758640784" class="text-[#D90429] hover:underline text-lg font-semibold">+33 7 55 07 83 01</a>
                             <br>
-                            <a href="tel:+33758640784" class="text-white/40 hover:text-[#D90429] transition-colors text-sm">+33 7 58 64 07 84</a>
+                            <a href="tel:+33755078301" class="text-white/40 hover:text-[#D90429] transition-colors text-sm">+33 7 58 64 07 84</a>
                         </div>
                     </div>
                     
