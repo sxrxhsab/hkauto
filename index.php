@@ -1022,7 +1022,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             <div class="service-card" data-aos="fade-up" onclick="openModal('entretien')">
-                <img src="3.jpeg" alt="Entretien et diagnostic" loading="lazy">
+                <img src="3.png" alt="Entretien et diagnostic" loading="lazy">
                 <h3>Entretien &amp; Diagnostic</h3>
                 <p>Révision complète, contrôle technique et diagnostic électronique.</p>
                 <span class="badge">Révision • Contrôle</span>
@@ -1030,7 +1030,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             </div>
             
             <div class="service-card" data-aos="fade-up" data-aos-delay="50" onclick="openModal('pneus')">
-                <img src="2.jpeg" alt="Pneus" loading="lazy">
+                <img src="2.png" alt="Pneus" loading="lazy">
                 <h3>Pneus</h3>
                 <p>Montage, équilibrage, réparation de pneus toutes marques.</p>
                 <span class="badge">Montage • Équilibrage</span>
@@ -1038,7 +1038,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             </div>
             
             <div class="service-card" data-aos="fade-up" data-aos-delay="100" onclick="openModal('vidange')">
-                <img src="5.jpeg" alt="Révision et vidange" loading="lazy">
+                <img src="5.png" alt="Révision et vidange" loading="lazy">
                 <h3>Révision &amp; Vidange</h3>
                 <p>Vidange moteur, remplacement des filtres, vérification complète.</p>
                 <span class="badge">Huile • Filtres</span>
@@ -1046,7 +1046,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             </div>
             
             <div class="service-card" data-aos="fade-up" data-aos-delay="150" onclick="openModal('freinage')">
-                <img src="3.jpeg" alt="Freinage" loading="lazy">
+                <img src="3.png" alt="Freinage" loading="lazy">
                 <h3>Freinage</h3>
                 <p>Contrôle et remplacement des plaquettes, disques, liquide de frein.</p>
                 <span class="badge">Plaquettes • Disques</span>
@@ -1054,7 +1054,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             </div>
             
             <div class="service-card" data-aos="fade-up" data-aos-delay="200" onclick="openModal('carrosserie')">
-                <img src="7.jpeg" alt="Carrosserie" loading="lazy">
+                <img src="7.png" alt="Carrosserie" loading="lazy">
                 <h3>Carrosserie</h3>
                 <p>Debosselage, peinture, réparation de carrosserie.</p>
                 <span class="badge">Peinture • Réparation</span>
@@ -1062,7 +1062,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
             </div>
             
             <div class="service-card" data-aos="fade-up" data-aos-delay="250" onclick="openModal('atelier')">
-                <img src="5.jpeg" alt="Atelier moderne" loading="lazy">
+                <img src="5.png" alt="Atelier moderne" loading="lazy">
                 <h3>Atelier Moderne</h3>
                 <p>Un atelier équipé des dernières technologies.</p>
                 <span class="badge">Moderne • Équipé</span>
@@ -1076,7 +1076,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <div id="modalEntretien" class="modal-overlay" onclick="closeModalOutside(event, 'modalEntretien')">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal('modalEntretien')"><i class="fas fa-times"></i></button>
-        <img src="3.jpeg" alt="Entretien et diagnostic">
+        <img src="3.png" alt="Entretien et diagnostic">
         <h2>Entretien &amp; <span>Diagnostic</span></h2>
         <p>Un entretien complet pour garantir la fiabilité et la sécurité de votre véhicule.</p>
         <ul>
@@ -1095,7 +1095,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <div id="modalPneus" class="modal-overlay" onclick="closeModalOutside(event, 'modalPneus')">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal('modalPneus')"><i class="fas fa-times"></i></button>
-        <img src="2.jpeg" alt="Pneus">
+        <img src="2.png" alt="Pneus">
         <h2><span>Pneus</span></h2>
         <p>Des prestations complètes pour vos pneus, toutes marques et tous types de véhicules.</p>
         <ul>
@@ -1114,7 +1114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <div id="modalVidange" class="modal-overlay" onclick="closeModalOutside(event, 'modalVidange')">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal('modalVidange')"><i class="fas fa-times"></i></button>
-        <img src="5.jpeg" alt="Révision et vidange">
+        <img src="5.png" alt="Révision et vidange">
         <h2>Révision &amp; <span>Vidange</span></h2>
         <p>Une vidange professionnelle pour prolonger la durée de vie de votre moteur.</p>
         <ul>
@@ -1133,7 +1133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <div id="modalFreinage" class="modal-overlay" onclick="closeModalOutside(event, 'modalFreinage')">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal('modalFreinage')"><i class="fas fa-times"></i></button>
-        <img src="3.jpeg" alt="Freinage">
+        <img src="3.png" alt="Freinage">
         <h2><span>Freinage</span></h2>
         <p>Un système de freinage fiable pour votre sécurité et celle des autres.</p>
         <ul>
@@ -1152,7 +1152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <div id="modalCarrosserie" class="modal-overlay" onclick="closeModalOutside(event, 'modalCarrosserie')">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal('modalCarrosserie')"><i class="fas fa-times"></i></button>
-        <img src="7.jpeg" alt="Carrosserie">
+        <img src="7.png" alt="Carrosserie">
         <h2><span>Carrosserie</span></h2>
         <p>Un travail soigné et professionnel pour redonner à votre véhicule son éclat.</p>
         <ul>
@@ -1171,7 +1171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 <div id="modalAtelier" class="modal-overlay" onclick="closeModalOutside(event, 'modalAtelier')">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal('modalAtelier')"><i class="fas fa-times"></i></button>
-        <img src="5.jpeg" alt="Atelier moderne">
+        <img src="5.png" alt="Atelier moderne">
         <h2>Atelier <span>Moderne</span></h2>
         <p>Un atelier équipé des dernières technologies pour un service de qualité.</p>
         <ul>
@@ -1593,7 +1593,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
             <div data-aos="fade-right">
-                <img src="1.jpeg" alt="Accueil HK AUTO" class="rounded-2xl w-full shadow-2xl" loading="lazy">
+                <img src="1.png" alt="Accueil HK AUTO" class="rounded-2xl w-full shadow-2xl" loading="lazy">
             </div>
             <div data-aos="fade-left">
                 <div class="space-y-6">
