@@ -1224,7 +1224,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
         </div>
         
         <div class="brands-grid mt-12" id="brandsGrid" data-aos="fade-up" data-aos-delay="100">
-         
             <!-- Mercedes-Benz -->
             <div class="brand-item-svg">
                 <img src="assets/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy">
@@ -1236,8 +1235,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <img src="assets/img/brands/audi.svg" alt="Audi" loading="lazy">
                 <span class="brand-name">Audi</span>
             </div>
-            
-     
             
             <!-- Peugeot -->
             <div class="brand-item-svg hidden-brand">
@@ -1262,8 +1259,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <img src="assets/img/brands/toyota.svg" alt="Toyota" loading="lazy">
                 <span class="brand-name">Toyota</span>
             </div>
-            
-          
             
             <!-- Nissan -->
             <div class="brand-item-svg hidden-brand">
@@ -1579,8 +1574,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <div class="glass rounded-2xl p-6 text-center">
                     <i class="fas fa-phone text-4xl text-[#D90429] mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">Appelez-nous</h3>
-                    <a href="tel:+33758640784" class="text-2xl font-bold text-[#D90429] hover:underline block">+33 7 55 07 83 01</a>
-                    <a href="tel:+33755078301" class="text-white/30 hover:text-[#D90429] transition-colors text-sm block mt-1">+33 7 58 64 07 84</a>
+                    <a href="tel:+33758640784" class="text-2xl font-bold text-[#D90429] hover:underline block">+33 7 58 64 07 84</a>
+                    <a href="tel:+33755078301" class="text-white/30 hover:text-[#D90429] transition-colors text-sm block mt-1">+33 7 55 07 83 01</a>
                     <p class="text-white/20 text-sm mt-2">Lun - Sam : 8h00 - 18h00</p>
                 </div>
             </div>
@@ -1608,9 +1603,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                         </div>
                         <div>
                             <h4 class="font-bold text-white">Téléphone principal</h4>
-                            <a href="tel:+33758640784" class="text-[#D90429] hover:underline text-lg font-semibold">+33 7 55 07 83 01</a>
+                            <a href="tel:+33758640784" class="text-[#D90429] hover:underline text-lg font-semibold">+33 7 58 64 07 84</a>
                             <br>
-                            <a href="tel:+33755078301" class="text-white/40 hover:text-[#D90429] transition-colors text-sm">+33 7 58 64 07 84</a>
+                            <a href="tel:+33755078301" class="text-white/40 hover:text-[#D90429] transition-colors text-sm">+33 7 55 07 83 01</a>
                         </div>
                     </div>
                     
@@ -1629,10 +1624,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                             <i class="fas fa-envelope text-[#D90429] text-2xl"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white">Email</h4>
-                            <a href="mailto:Malik.salhi77@gmail.com" class="text-white/60 hover:text-[#D90429] transition-colors">Malik.salhi77@gmail.com</a>
+                            <h4 class="font-bold text-white">Email principal</h4>
+                            <a href="mailto:Autohkcontact@gmail.com" class="text-[#D90429] hover:underline text-lg font-semibold">Autohkcontact@gmail.com</a>
                             <br>
-                            <a href="mailto:Autohkcontact1@gmail.com" class="text-white/30 hover:text-[#D90429] transition-colors text-sm">Autohkcontact1@gmail.com</a>
+                            <a href="mailto:Malik.salhi77@gmail.com" class="text-white/40 hover:text-[#D90429] transition-colors text-sm">Malik.salhi77@gmail.com</a>
                         </div>
                     </div>
                     
@@ -1708,10 +1703,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
                 <h4 class="font-bold mb-4 text-white">Coordonnées</h4>
                 <ul class="space-y-2 text-sm text-white/40">
                     <li><i class="fas fa-map-marker-alt mr-2 text-[#D90429]"></i> 18 Rue Carnot, 95870 BEZONS</li>
-                    <li><i class="fas fa-phone mr-2 text-[#D90429]"></i> <a href="tel:+33755078301" class="hover:text-white transition-colors">+33 7 55 07 83 01</a></li>
+                    <li><i class="fas fa-phone mr-2 text-[#D90429]"></i> <a href="tel:+33758640784" class="hover:text-white transition-colors">+33 7 58 64 07 84</a></li>
                     <li><i class="fab fa-whatsapp mr-2 text-[#25D366]"></i> <a href="https://wa.me/33758640784" target="_blank" class="hover:text-white transition-colors">+33 7 58 64 07 84</a></li>
-                    <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Malik.salhi77@gmail.com" class="hover:text-white transition-colors">Malik.salhi77@gmail.com</a></li>
-                    <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Autohkcontact1@gmail.com" class="hover:text-white transition-colors">Autohkcontact1@gmail.com</a></li>
+                    <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Autohkcontact@gmail.com" class="hover:text-white transition-colors">Autohkcontact@gmail.com</a></li>
+                    <li><i class="fas fa-envelope mr-2 text-[#D90429]"></i> <a href="mailto:Malik.salhi77@gmail.com" class="hover:text-white transition-colors text-sm">Malik.salhi77@gmail.com</a></li>
                 </ul>
             </div>
             <div>
@@ -1742,7 +1737,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['review'])) {
 
 <!-- ===== MOBILE BOTTOM BAR ===== -->
 <div class="mobile-bottom-bar">
-    <a href="tel:+33755078301" class="bar-item">
+    <a href="tel:+33758640784" class="bar-item">
         <i class="fas fa-phone"></i>
         <span>Appeler</span>
     </a>
